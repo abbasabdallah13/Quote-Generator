@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/favicon.png" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Bubblegum Sans"
+      rel="stylesheet"
+    />
+    <title>Quote Generator</title>
+  </head>
+  <body>
+    <img class="nightsky" src="./assets/nightsky.png" alt="nightsky" />
+    <img
+      class="shootingstar"
+      src="./assets/shootingstar.png"
+      alt="shooting star"
+    />
+    <div id="quote-box">
+      <div id="author">Theodore Rooseve</div>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 90%;
+          padding: 1rem;
+        "
+      >
+        <div id="text">Never Give Up on something you believe in</div>
+        <div style="display: flex; align-items: center; margin-top: 1rem">
+          <button id="new-quote">
+            &nbsp; <img src="./assets/quotes.png" alt="quotes" />New Quote&nbsp;
+          </button>
+          <a href="twitter.com/intent/tweet" id="tweet-quote"
+            ><img src="./assets/twitter.png" alt="twitter icon"
+          /></a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    const quotes = {
+      "Dalai Lama": "The purpose of our lives is to be happy",
+      "Stephen King": "Get busy living or get busy dying",
+      "John Lennon":
+        "Life is what happens when you are busy making other plans",
+      "Mae West": "You only live once, but if you do it right, once is enough",
+      "Thomas A. Edison":
+        "Many of life’s failures are people who did not realize how close they were to success when they gave up",
+    };
+
+    $(document).ready(() => {
+      let random = Math.ceil(Math.random() * Object.keys(quotes).length - 1);
+      $("#text").text(quotes[Object.keys(quotes)[random]]);
+      $("#author").text(Object.keys(quotes)[random]);
+    });
+
+    $("#new-quote").click(() => {
+      $(".shootingstar").addClass("animateStar");
+      let random = Math.ceil(Math.random() * Object.keys(quotes).length - 1);
+      $("#text").text(quotes[Object.keys(quotes)[random]]);
+      $("#author").text(Object.keys(quotes)[random]);
+      setTimeout(() => {
+        $(".shootingstar").removeClass("animateStar");
+      }, 1000);
+    });
+  </script>
+</html>
